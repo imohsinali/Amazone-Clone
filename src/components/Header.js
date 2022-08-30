@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { ShoppingBasket } from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useState } from "react";
 const Header = () => {
+  const focusRef = useRef(0);
+
+  const onClick = () => {
+    focusRef.current.focus();
+  };
+
   return (
     <div className="header">
       <img
@@ -21,8 +28,10 @@ const Header = () => {
         </div>
       </div>
       <div className="header-search">
-        <input type="text" className="header-search-input" />
-        <SearchIcon className="header-search-icon" />
+        <input type="text" className="header-search-input " ref={focusRef} />
+        <button className="header-search-icon" onClick={onClick}>
+          <SearchIcon />
+        </button>
       </div>
       <div className="header-nav">
         <div className="header-option">
