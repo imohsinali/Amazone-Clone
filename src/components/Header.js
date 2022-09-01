@@ -3,6 +3,7 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { ShoppingBasket } from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Link } from "react-router-dom";
 const Header = () => {
   const focusRef = useRef(0);
   const falltenArray = (array, depth = 1) => {
@@ -35,12 +36,14 @@ const Header = () => {
 
   return (
     <div className="header">
-      <img
-        className="header-logo"
-        src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        alt=""
-        srcset=""
-      />
+      <Link to="/">
+        <img
+          className="header-logo"
+          src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          alt=""
+          srcset=""
+        />
+      </Link>
       <div className="header-option">
         <span className="header-option-lineOne">Deliver to</span>
         <div className="location">
@@ -68,10 +71,12 @@ const Header = () => {
           <span className="header-option-lineOne">Your</span>
           <span className="header-option-lineTwo">Prime</span>
         </div>
-        <div className="header-optionBasket">
-          <ShoppingBasket />
-          <span className="header-option-lineTwo header-basketCount">0</span>
-        </div>
+        <Link to="checkout">
+          <div className="header-optionBasket">
+            <ShoppingBasket />
+            <span className="header-option-lineTwo header-basketCount">0</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
