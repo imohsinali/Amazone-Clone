@@ -4,7 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ShoppingBasket } from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
 const Header = () => {
+  const [{ basket }, dispatch] = useStateValue();
   const focusRef = useRef(0);
   const falltenArray = (array, depth = 1) => {
     let result = [];
@@ -21,7 +23,7 @@ const Header = () => {
       setTimeout(function log() {
         // let v = fun();
         // console.log(v);
-        console.log(a);
+        // console.log(a);
         // return log();
       });
     }
@@ -74,7 +76,9 @@ const Header = () => {
         <Link to="checkout">
           <div className="header-optionBasket">
             <ShoppingBasket />
-            <span className="header-option-lineTwo header-basketCount">0</span>
+            <span className="header-option-lineTwo header-basketCount">
+              {basket?.length}
+            </span>
           </div>
         </Link>
       </div>
