@@ -5,11 +5,18 @@ import { ShoppingBasket } from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
+import { auth } from "../firebase";
 const Header = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
   const focusRef = useRef(0);
   const onClick = () => {
     focusRef.current.focus();
+  };
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
   };
 
   return (
@@ -37,12 +44,19 @@ const Header = () => {
         </button>
       </div>
       <div className="header-nav">
-        <div className="header-option">
-          <Link to={"login"} style={{ textDecoration: "none", color: "white" }}>
-            <span className="header-option-lineOne">Hello Guest</span>{" "}
-            <span className="header-option-lineTwo">Sign In</span>
-          </Link>{" "}
-        </div>
+        <Link
+          to={!user && "/login"}
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <div onClick={handleAuthentication} className="header-option">
+            <span className="header-option-lineOne">
+              Hello {user ? user.email : "Guest"}
+            </span>{" "}
+            <span className="header-option-lineTwo">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
+          </div>
+        </Link>{" "}
         <div className="header-option">
           <span className="header-option-lineOne">Returns</span>
           <span className="header-option-lineTWo">Order</span>
