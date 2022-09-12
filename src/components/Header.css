@@ -115,3 +115,8 @@
 .header-basketCount {
   margin: 0 10px;
 }
+
+.header-option Link {
+  text-decoration: none !important;
+  color: wheat !important;
+}
