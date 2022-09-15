@@ -15,15 +15,17 @@ const Subtotal = () => {
   for (let i = 0; i < basket.length; i++) {
     amount += basket[i].price;
   }
-  console.log(amount);
+  console.log(getBasketTotal(basket));
 
   return (
     <div className="subtotal">
       <CurrencyFormat
         renderText={(value) => (
           <>
+            {console.log("This is value", value)}
+
             <p>
-              Subtotal ({basket.length} items):<strong>{amount}</strong>
+              Subtotal ({basket.length} items):<strong>{value}</strong>
             </p>
             <small className="subtotal-gift">
               <input type="checkbox" />
