@@ -2,9 +2,9 @@ export const initialState = {
   basket: [],
   user: null,
 };
-export const getBasketTotal = (basket) => {
+export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
-};
+
 const reducer = (state, action) => {
   // console.log(action);
   switch (action.type) {
@@ -34,6 +34,9 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+    case "EMPTY_BASKET": {
+      return { ...state, basket: [] };
+    }
     default:
       return state;
   }
